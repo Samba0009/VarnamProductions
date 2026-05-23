@@ -35,6 +35,7 @@
   <!-- Main Style Sheet -->
   <link rel="stylesheet" href="src/styles/main.css">
   <link rel="stylesheet" href="src/styles/sections.css">
+  <link rel="stylesheet" href="src/styles/netflix.css">
 </head>
 <body>
 
@@ -58,6 +59,68 @@
       </div>
       <h2 class="netflix-brand-title">VARNAM</h2>
     </div>
+  </div>
+
+  <!-- --- Netflix starting Gate Screen --- -->
+  <div class="netflix-gate" id="netflix-gate-screen">
+    <div class="gate-content">
+      <span class="gate-logo">V</span>
+      <button class="gate-btn cursor-hover" id="gate-btn">Enter Cinematic Experience</button>
+    </div>
+  </div>
+
+  <!-- --- Netflix animated Splash Screen --- -->
+  <div class="netflix-splash" id="netflix-splash-screen">
+    <div class="splash-svg-container">
+      <svg viewBox="0 0 100 100" width="100%" height="100%">
+        <defs>
+          <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#e50914" />
+            <stop offset="70%" stop-color="#b81d24" />
+            <stop offset="100%" stop-color="#d4af37" />
+          </linearGradient>
+        </defs>
+        <path class="splash-svg-path" d="M15 5 L35 5 L50 70 L65 5 L85 5 L60 95 L40 95 Z" fill="none" stroke="url(#logoGradient)" stroke-width="3" />
+      </svg>
+      <div class="splash-light-beams">
+        <div class="beam beam-1"></div>
+        <div class="beam beam-2"></div>
+        <div class="beam beam-3"></div>
+        <div class="beam beam-4"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- Netflix Profile Selection Screen --- -->
+  <div class="netflix-profiles" id="netflix-profile-screen">
+    <h2 class="profiles-title">Who's watching Varnam?</h2>
+    <div class="profiles-grid">
+      <div class="profile-card cursor-hover" data-name="Rohan (Director)">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar avatar-rohan">R</div>
+        </div>
+        <span class="profile-name">Rohan</span>
+      </div>
+      <div class="profile-card cursor-hover" data-name="Elena (Thriller)">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar avatar-elena">E</div>
+        </div>
+        <span class="profile-name">Elena</span>
+      </div>
+      <div class="profile-card cursor-hover" data-name="Vikram (VFX)">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar avatar-vikram">V</div>
+        </div>
+        <span class="profile-name">Vikram</span>
+      </div>
+      <div class="profile-card cursor-hover" data-name="Guest Fan">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar avatar-guest">G</div>
+        </div>
+        <span class="profile-name">Guest</span>
+      </div>
+    </div>
+    <button class="profiles-manage-btn cursor-hover">Manage Profiles</button>
   </div>
 
   <!-- Custom Cinematic Cursor -->
@@ -100,7 +163,47 @@
       </nav>
 
       <div class="header-actions">
-        <a href="#contact" class="btn-secondary header-btn cursor-hover">Get In Touch</a>
+        <!-- Netflix Search box -->
+        <div class="netflix-search-box" id="netflix-search-box">
+          <button class="search-icon-btn cursor-hover" id="search-btn" aria-label="Search Catalog">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
+          <input type="text" placeholder="Titles, genres, directors..." class="search-input-field" id="search-input">
+        </div>
+
+        <!-- Notification Bell -->
+        <button class="notification-bell-btn cursor-hover" aria-label="Notifications">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span class="notification-badge">3</span>
+        </button>
+
+        <!-- Netflix Profile Dropdown Trigger -->
+        <div class="navbar-profile-trigger cursor-hover">
+          <div class="navbar-profile-icon avatar-rohan" id="active-profile-icon">R</div>
+          <span class="navbar-profile-caret"></span>
+          
+          <!-- Dropdown Menu -->
+          <div class="navbar-profile-dropdown">
+            <ul class="dropdown-profile-list">
+              <li class="dropdown-profile-item">
+                <div class="dropdown-avatar avatar-rohan">R</div>
+                <span id="active-profile-name">Rohan</span>
+              </li>
+            </ul>
+            <ul class="dropdown-action-links">
+              <li class="dropdown-action-item"><a href="#" id="switch-profiles-btn">Switch Profiles</a></li>
+              <li class="dropdown-action-item"><a href="#contact">Manage Profiles</a></li>
+              <li class="dropdown-action-item"><a href="#contact">Account Details</a></li>
+              <li class="dropdown-action-item"><a href="#" id="signout-btn">Sign Out of Varnam</a></li>
+            </ul>
+          </div>
+        </div>
+
         <button class="mobile-menu-btn cursor-hover" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
           <span class="menu-line"></span>
           <span class="menu-line"></span>
@@ -129,8 +232,9 @@
   <section class="hero-section" id="hero">
     <!-- Visual Ambient Canvas Background -->
     <div class="hero-bg-media">
-      <div class="hero-vignette"></div>
-      <div class="hero-color-grading"></div>
+      <!-- High-res cinematic widescreen backdrop image -->
+      <div class="hero-billboard-backdrop" style="background-image: url('images/nebula_drift.png');"></div>
+      <div class="hero-billboard-gradient"></div>
       <div class="smoke-overlay"></div>
       <!-- Real Canvas for Cinematic Dust Particles -->
       <canvas id="dust-canvas" class="dust-canvas"></canvas>
@@ -138,42 +242,62 @@
 
     <div class="container hero-grid-wrapper">
       <div class="hero-content-column">
-        <div class="hero-meta-badge fade-up">
-          <span class="badge-line"></span>
-          <span class="badge-text">WORLD'S FIRST QUICK CONTENT SERVICE</span>
+        <!-- V ORIGINAL Tag -->
+        <div class="hero-v-original fade-up">
+          <span class="v-original-mark">V</span>
+          <span class="v-original-text">Original Project Showcase</span>
         </div>
         
-        <h1 class="hero-title fade-up">
-          WE SHOOT • EDIT <br>
-          DELIVER REELS IN <br>
-          <span class="gold-text">10 MINUTES*</span>
-        </h1>
+        <h1 class="hero-title fade-up">NEBULA DRIFT</h1>
+        
+        <!-- Billboard streaming tags metadata row -->
+        <div class="billboard-meta-row fade-up">
+          <span class="meta-match">98% Match</span>
+          <span class="meta-year">2026</span>
+          <span class="meta-age-badge">U/A 16+</span>
+          <span class="meta-quality-badge">4K Ultra HD</span>
+          <span class="meta-quality-badge">5.1 Audio</span>
+        </div>
         
         <p class="hero-lead fade-up">
-          Varnam Productions is a next-generation quick content service. We fuse bold creative philosophies with a hyper-speed, state-of-the-art production pipeline to deliver vertical reels that leave an indelible mark on the viewer—in exactly ten minutes.
+          A high-concept visual campaign blending deep immersive CGI space environments with rapid kinetic edits. Discover our elite state-of-the-art production pipeline optimized for maximum screens.
         </p>
 
-        <div class="hero-cta-group fade-up">
-          <button class="btn-primary cursor-hover" id="play-showreel-btn">
-            <svg class="play-icon" viewBox="0 0 24 24" width="20" height="20">
-              <path fill="currentColor" d="M8 5v14l11-7z"/>
-            </svg>
-            Watch Reel Showcase
+        <div class="billboard-cta-group fade-up">
+          <button class="btn-nf-play cursor-hover" id="billboard-play-btn">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+            Play Showreel
           </button>
-          <a href="#contact" class="btn-secondary cursor-hover">
-            Book a Shoot
-          </a>
+          
+          <button class="btn-nf-secondary cursor-hover" id="billboard-list-btn">
+            <span class="list-icon" style="display:inline-flex; align-items:center; justify-content:center;">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            </span>
+            <span>My List</span>
+          </button>
+          
+          <button class="btn-nf-secondary cursor-hover" id="billboard-info-btn">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-15v6m0 4h.01"/>
+            </svg>
+            More Info
+          </button>
         </div>
       </div>
 
-      <!-- Sleek Interactive 3D Phone Reel Visualization Column -->
-      <div class="hero-visual-column fade-up">
-        <div class="phone-3d-container">
-          <canvas id="phone-3d-canvas" class="phone-3d-canvas"></canvas>
-          <div class="phone-glow-glow"></div>
-        </div>
+      <!-- Billboard Side Controls -->
+      <div class="billboard-audio-control">
+        <button class="btn-nf-audio cursor-hover" id="billboard-audio-btn" aria-label="Toggle Sound">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+          </svg>
+        </button>
+        <span class="billboard-rating-badge">U/A 16+</span>
       </div>
     </div>
+
+    <!-- Hidden triggers for existing modals -->
+    <button id="play-showreel-btn" style="display:none;"></button>
   </section>
 
   <!-- --- Immersive Video Showreel Modal --- -->
@@ -239,7 +363,7 @@
         <!-- Card 1: Nebula VR Branding -->
         <article class="portfolio-card cursor-hover" data-category="features">
           <div class="card-image-wrapper">
-            <img src="/images/nebula_drift.png" alt="Nebula VR Branding Cinematic Poster" class="card-img" loading="lazy">
+            <img src="images/nebula_drift.png" alt="Nebula VR Branding Cinematic Poster" class="card-img" loading="lazy">
             <div class="card-overlay-gradient"></div>
             
             <!-- Floating Awards Badge -->
@@ -249,22 +373,39 @@
               </svg>
               <span>VIRAL LAUNCH</span>
             </div>
+          </div>
+          
+          <div class="card-content">
+            <span class="card-genre">BRAND REEL / TECH</span>
+            <h3 class="card-title">NEBULA VR BRANDING</h3>
+            <p class="card-description">A high-concept launch reel for Nebula's next-gen VR headset, blending immersive CGI space visuals with rapid transitions.</p>
+          </div>
 
-            <!-- Overlay Details -->
-            <div class="card-content">
-              <span class="card-genre">BRAND REEL / TECH</span>
-              <h3 class="card-title">NEBULA VR BRANDING</h3>
-              <p class="card-description">A high-concept launch reel for Nebula's next-gen VR headset, blending immersive CGI space visuals with rapid transitions.</p>
-              
-              <div class="card-footer-info">
-                <span class="card-role">Client: <strong>Nebula Tech</strong></span>
-                <button class="card-action-btn" aria-label="View Nebula VR Branding project details">
-                  <span>DISCOVER</span>
-                  <svg viewBox="0 0 24 24" width="16" height="16">
-                    <path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </button>
-              </div>
+          <!-- Netflix Hover details -->
+          <div class="netflix-card-hover-details">
+            <div class="hover-actions-row">
+              <button class="action-circle-btn btn-play-white cursor-hover" aria-label="Play">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Add to List">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Like">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+              </button>
+            </div>
+            <div class="hover-meta-row">
+              <span class="hover-match">98% Match</span>
+              <span class="hover-age">U/A 13+</span>
+              <span class="meta-quality-badge">4K HDR</span>
+            </div>
+            <h4 class="card-title" style="font-size:0.95rem; margin-bottom:6px; font-weight:900;">NEBULA VR BRANDING</h4>
+            <div class="hover-genres">
+              <span>Sci-Fi</span>
+              <span class="genre-dot">•</span>
+              <span>Tech</span>
+              <span class="genre-dot">•</span>
+              <span>Brand</span>
             </div>
           </div>
         </article>
@@ -272,7 +413,7 @@
         <!-- Card 2: Shadow Apparel Reel -->
         <article class="portfolio-card cursor-hover" data-category="features">
           <div class="card-image-wrapper">
-            <img src="/images/shadow_monarch.png" alt="Shadow Apparel Reel Cinematic Poster" class="card-img" loading="lazy">
+            <img src="images/shadow_monarch.png" alt="Shadow Apparel Reel Cinematic Poster" class="card-img" loading="lazy">
             <div class="card-overlay-gradient"></div>
             
             <div class="award-badge">
@@ -281,21 +422,39 @@
               </svg>
               <span>TRENDING REEL</span>
             </div>
+          </div>
+          
+          <div class="card-content">
+            <span class="card-genre">VERTICAL REEL / SOCIAL</span>
+            <h3 class="card-title">SHADOW APPAREL REEL</h3>
+            <p class="card-description">A gritty, high-contrast urban streetwear showcase highlighting nocturnal fits under neon elements.</p>
+          </div>
 
-            <div class="card-content">
-              <span class="card-genre">VERTICAL REEL / SOCIAL</span>
-              <h3 class="card-title">SHADOW APPAREL REEL</h3>
-              <p class="card-description">A gritty, high-contrast urban streetwear showcase highlighting nocturnal fits under neon elements.</p>
-              
-              <div class="card-footer-info">
-                <span class="card-role">Client: <strong>Shadow Apparel</strong></span>
-                <button class="card-action-btn" aria-label="View Shadow Apparel Reel details">
-                  <span>DISCOVER</span>
-                  <svg viewBox="0 0 24 24" width="16" height="16">
-                    <path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </button>
-              </div>
+          <!-- Netflix Hover details -->
+          <div class="netflix-card-hover-details">
+            <div class="hover-actions-row">
+              <button class="action-circle-btn btn-play-white cursor-hover" aria-label="Play">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Add to List">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Like">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+              </button>
+            </div>
+            <div class="hover-meta-row">
+              <span class="hover-match">95% Match</span>
+              <span class="hover-age">U/A 16+</span>
+              <span class="meta-quality-badge">HD</span>
+            </div>
+            <h4 class="card-title" style="font-size:0.95rem; margin-bottom:6px; font-weight:900;">SHADOW APPAREL REEL</h4>
+            <div class="hover-genres">
+              <span>Urban</span>
+              <span class="genre-dot">•</span>
+              <span>Fashion</span>
+              <span class="genre-dot">•</span>
+              <span>Nocturnal</span>
             </div>
           </div>
         </article>
@@ -303,7 +462,7 @@
         <!-- Card 3: Monsoon Resort Trailer -->
         <article class="portfolio-card cursor-hover" data-category="shorts">
           <div class="card-image-wrapper">
-            <img src="/images/echoes_monsoon.png" alt="Monsoon Resort Trailer Cinematic Poster" class="card-img" loading="lazy">
+            <img src="images/echoes_monsoon.png" alt="Monsoon Resort Trailer Cinematic Poster" class="card-img" loading="lazy">
             <div class="card-overlay-gradient"></div>
             
             <div class="award-badge">
@@ -312,21 +471,39 @@
               </svg>
               <span>PREMIUM ESCAPE</span>
             </div>
+          </div>
+          
+          <div class="card-content">
+            <span class="card-genre">PROMOTIONAL / TRAVEL</span>
+            <h3 class="card-title">MONSOON RESORT TRAILER</h3>
+            <p class="card-description">An organic, slow-motion aesthetic tourism travel film exploring rain-slicked luxury retreats in rural Kerala.</p>
+          </div>
 
-            <div class="card-content">
-              <span class="card-genre">PROMOTIONAL / TRAVEL</span>
-              <h3 class="card-title">MONSOON RESORT TRAILER</h3>
-              <p class="card-description">An organic, slow-motion aesthetic tourism travel film exploring rain-slicked luxury retreats in rural Kerala.</p>
-              
-              <div class="card-footer-info">
-                <span class="card-role">Client: <strong>Monsoon Resorts</strong></span>
-                <button class="card-action-btn" aria-label="View Monsoon Resort Trailer details">
-                  <span>DISCOVER</span>
-                  <svg viewBox="0 0 24 24" width="16" height="16">
-                    <path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </button>
-              </div>
+          <!-- Netflix Hover details -->
+          <div class="netflix-card-hover-details">
+            <div class="hover-actions-row">
+              <button class="action-circle-btn btn-play-white cursor-hover" aria-label="Play">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Add to List">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Like">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+              </button>
+            </div>
+            <div class="hover-meta-row">
+              <span class="hover-match">94% Match</span>
+              <span class="hover-age">U/A 7+</span>
+              <span class="meta-quality-badge">4K HDR</span>
+            </div>
+            <h4 class="card-title" style="font-size:0.95rem; margin-bottom:6px; font-weight:900;">MONSOON RESORT TRAILER</h4>
+            <div class="hover-genres">
+              <span>Organic</span>
+              <span class="genre-dot">•</span>
+              <span>Travel</span>
+              <span class="genre-dot">•</span>
+              <span>Atmospheric</span>
             </div>
           </div>
         </article>
@@ -334,23 +511,41 @@
         <!-- Card 4: Lumos EV Branding (Commercial) -->
         <article class="portfolio-card cursor-hover" data-category="commercials">
           <div class="card-image-wrapper">
-            <img src="/images/project_lumos.png" alt="Lumos EV Branding Cinematic Poster" class="card-img" loading="lazy">
+            <img src="images/project_lumos.png" alt="Lumos EV Branding Cinematic Poster" class="card-img" loading="lazy">
             <div class="card-overlay-gradient"></div>
-            
-            <div class="card-content">
-              <span class="card-genre">COMMERCIAL / ADVANCED VISUALS</span>
-              <h3 class="card-title">LUMOS EV BRANDING</h3>
-              <p class="card-description">A high-end cinematic commercial for Lumos Electric Vehicles, merging high-speed robotic arm takes with neon laser projections.</p>
-              
-              <div class="card-footer-info">
-                <span class="card-role">Client: <strong>Lumos Automotive</strong></span>
-                <button class="card-action-btn" aria-label="View Lumos EV Branding details">
-                  <span>DISCOVER</span>
-                  <svg viewBox="0 0 24 24" width="16" height="16">
-                    <path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </button>
-              </div>
+          </div>
+          
+          <div class="card-content">
+            <span class="card-genre">COMMERCIAL / ADVANCED VISUALS</span>
+            <h3 class="card-title">LUMOS EV BRANDING</h3>
+            <p class="card-description">A high-end cinematic commercial for Lumos Electric Vehicles, merging high-speed robotic arm takes with neon laser projections.</p>
+          </div>
+
+          <!-- Netflix Hover details -->
+          <div class="netflix-card-hover-details">
+            <div class="hover-actions-row">
+              <button class="action-circle-btn btn-play-white cursor-hover" aria-label="Play">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Add to List">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Like">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+              </button>
+            </div>
+            <div class="hover-meta-row">
+              <span class="hover-match">96% Match</span>
+              <span class="hover-age">U/A 13+</span>
+              <span class="meta-quality-badge">4K HDR</span>
+            </div>
+            <h4 class="card-title" style="font-size:0.95rem; margin-bottom:6px; font-weight:900;">LUMOS EV BRANDING</h4>
+            <div class="hover-genres">
+              <span>Electric</span>
+              <span class="genre-dot">•</span>
+              <span>Futuristic</span>
+              <span class="genre-dot">•</span>
+              <span>Commercial</span>
             </div>
           </div>
         </article>
@@ -358,23 +553,41 @@
         <!-- Card 5: Apex Runtime Campaign (Shorts) -->
         <article class="portfolio-card cursor-hover" data-category="shorts">
           <div class="card-image-wrapper">
-            <img src="/images/chrono_trigger.png" alt="Apex Runtime Campaign Cinematic Poster" class="card-img" loading="lazy">
+            <img src="images/chrono_trigger.png" alt="Apex Runtime Campaign Cinematic Poster" class="card-img" loading="lazy">
             <div class="card-overlay-gradient"></div>
-            
-            <div class="card-content">
-              <span class="card-genre">BRAND FILM / ACTIVEWEAR</span>
-              <h3 class="card-title">APEX RUNTIME CAMPAIGN</h3>
-              <p class="card-description">An ultra-dynamic, high-speed micro-campaign for APEX activewear shot in a single continuous acrobatic camera take.</p>
-              
-              <div class="card-footer-info">
-                <span class="card-role">Client: <strong>APEX Sportswear</strong></span>
-                <button class="card-action-btn" aria-label="View Apex Runtime Campaign details">
-                  <span>DISCOVER</span>
-                  <svg viewBox="0 0 24 24" width="16" height="16">
-                    <path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </button>
-              </div>
+          </div>
+          
+          <div class="card-content">
+            <span class="card-genre">BRAND FILM / ACTIVEWEAR</span>
+            <h3 class="card-title">APEX RUNTIME CAMPAIGN</h3>
+            <p class="card-description">An ultra-dynamic, high-speed micro-campaign for APEX activewear shot in a single continuous acrobatic camera take.</p>
+          </div>
+
+          <!-- Netflix Hover details -->
+          <div class="netflix-card-hover-details">
+            <div class="hover-actions-row">
+              <button class="action-circle-btn btn-play-white cursor-hover" aria-label="Play">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Add to List">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Like">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+              </button>
+            </div>
+            <div class="hover-meta-row">
+              <span class="hover-match">93% Match</span>
+              <span class="hover-age">U/A 13+</span>
+              <span class="meta-quality-badge">HD</span>
+            </div>
+            <h4 class="card-title" style="font-size:0.95rem; margin-bottom:6px; font-weight:900;">APEX RUNTIME CAMPAIGN</h4>
+            <div class="hover-genres">
+              <span>Kinetic</span>
+              <span class="genre-dot">•</span>
+              <span>Activewear</span>
+              <span class="genre-dot">•</span>
+              <span>Acrobatic</span>
             </div>
           </div>
         </article>
@@ -382,23 +595,41 @@
         <!-- Card 6: Velvet Couture Short (Commercial) -->
         <article class="portfolio-card cursor-hover" data-category="commercials">
           <div class="card-image-wrapper">
-            <img src="/images/ethereal.png" alt="Velvet Couture Short Cinematic Poster" class="card-img" loading="lazy">
+            <img src="images/ethereal.png" alt="Velvet Couture Short Cinematic Poster" class="card-img" loading="lazy">
             <div class="card-overlay-gradient"></div>
-            
-            <div class="card-content">
-              <span class="card-genre">COMMERCIAL / HIGH FASHION</span>
-              <h3 class="card-title">VELVET COUTURE SHORT</h3>
-              <p class="card-description">A beautiful visual essay for Velvet Couture, exploring slow-motion fluid fabric motion under golden-hour lighting gradients.</p>
-              
-              <div class="card-footer-info">
-                <span class="card-role">Client: <strong>Velvet Couture</strong></span>
-                <button class="card-action-btn" aria-label="View Velvet Couture Short details">
-                  <span>DISCOVER</span>
-                  <svg viewBox="0 0 24 24" width="16" height="16">
-                    <path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </button>
-              </div>
+          </div>
+          
+          <div class="card-content">
+            <span class="card-genre">COMMERCIAL / HIGH FASHION</span>
+            <h3 class="card-title">VELVET COUTURE SHORT</h3>
+            <p class="card-description">A beautiful visual essay for Velvet Couture, exploring slow-motion fluid fabric motion under golden-hour lighting gradients.</p>
+          </div>
+
+          <!-- Netflix Hover details -->
+          <div class="netflix-card-hover-details">
+            <div class="hover-actions-row">
+              <button class="action-circle-btn btn-play-white cursor-hover" aria-label="Play">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Add to List">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </button>
+              <button class="action-circle-btn cursor-hover" aria-label="Like">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+              </button>
+            </div>
+            <div class="hover-meta-row">
+              <span class="hover-match">92% Match</span>
+              <span class="hover-age">U/A 7+</span>
+              <span class="meta-quality-badge">HD</span>
+            </div>
+            <h4 class="card-title" style="font-size:0.95rem; margin-bottom:6px; font-weight:900;">VELVET COUTURE SHORT</h4>
+            <div class="hover-genres">
+              <span>Elegant</span>
+              <span class="genre-dot">•</span>
+              <span>Fabric</span>
+              <span class="genre-dot">•</span>
+              <span>Fashion</span>
             </div>
           </div>
         </article>
