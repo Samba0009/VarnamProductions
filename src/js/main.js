@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
         
       case 'portfolio':
-        // Films section: Sub-bass cinematic rumble and cleaner filter spacing
+        // Client Videos section: Sub-bass cinematic rumble and cleaner filter spacing
         droneOsc.frequency.linearRampToValueAtTime(55, now + 1.5);
         filterNode.frequency.linearRampToValueAtTime(240, now + 1.5);
         filterNode.Q.linearRampToValueAtTime(1.5, now + 1.5);
@@ -888,52 +888,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Pre-configured projects data mapping for the lightbox details
   const projectsData = {
-    'NEBULA DRIFT': {
-      genre: 'SCI-FI / HIGH CONCEPT',
-      desc: 'An astronaut discovering an anomalous gravity well in deep space has to decipher a series of mathematical coordinates encoded in gravity waves. As the boundaries of space-time compress, she confronts a projection of her own consciousness floating inside a massive stellar storm. A high-production sci-fi odyssey emphasizing realistic astrophysics rendering and virtual LED production pipelines.',
-      director: 'Vikram Sen',
+    'NEBULA VR BRANDING': {
+      genre: 'BRAND REEL / TECH',
+      desc: 'A high-concept launch campaign for Nebula Tech\'s next-generation VR headset. Blending virtual CGI environments with fluid, high-speed camera transitions to showcase extreme depth of field and state-of-the-art optical clarity. Designed for hyper-impact vertical screens.',
+      director: 'Nebula Tech',
       year: '2025',
-      status: 'In Theatres',
+      status: 'Active Campaign',
       img: '/images/nebula_drift.png'
     },
-    'SHADOW MONARCH': {
-      genre: 'PSYCHOLOGICAL THRILLER',
-      desc: 'Elena Rostova captures a dark noir psychological masterpiece tracking Detective Silas Cross. As Cross descends into clinical insomnia, he tracks a criminal chessmaster orchestrating chaos across a rain-slicked city without leaving a single trace. Visually striking, high-contrast chiaroscuro, utilizing vintage anamorphic lenses and dynamic dark room color grades.',
-      director: 'Elena Rostova',
+    'SHADOW APPAREL REEL': {
+      genre: 'VERTICAL REEL / SOCIAL',
+      desc: 'A high-contrast, moody urban vertical fashion campaign for Shadow Apparel. Shot entirely under dark neon elements with slow-motion fluid captures to highlight details of premium techwear, backed by an immersive sub-bass soundtrack.',
+      director: 'Shadow Apparel',
       year: '2026',
-      status: 'Festival Run',
+      status: 'Trending Online',
       img: '/images/shadow_monarch.png'
     },
-    'ECHOES OF MONSOON': {
-      genre: 'INDIE DRAMA',
-      desc: 'A gorgeous, hyper-realistic familial exploration set in the heart of waterlogged Alappuzha, Kerala. During the heaviest rainfall season in fifty years, a grandfather and his estranged granddaughter must rebuild a crumbling wood boat to cross the rising backwaters and deliver essential supplies, healing multi-generational trauma in the quiet spaces between rains.',
-      director: 'Rohan Varnam',
+    'MONSOON RESORT TRAILER': {
+      genre: 'PROMOTIONAL / TRAVEL',
+      desc: 'An organic and evocative branding cinematic essay exploring rain-slicked luxury retreats for Monsoon Resorts in Kerala. Utilizing dynamic HDR sensors, gimbal stabilizers, and atmospheric field audio to present a prestigious, slow-motion travel getaway experience.',
+      director: 'Monsoon Resorts',
       year: '2026',
-      status: 'Released / Cannes Selection',
+      status: 'Campaign Active',
       img: '/images/echoes_monsoon.png'
     },
-    'PROJECT LUMOS': {
-      genre: 'COMMERCIAL / BRANDS',
-      desc: 'State-of-the-art cinematic commercial presenting a futuristic electric vehicle. Using Unreal Engine virtual production pipelines and live mechanical camera arms to craft high-fidelity holographic projection shots blending physical automotive contours with digital light ribbons.',
-      director: 'Marcus Vance',
+    'LUMOS EV BRANDING': {
+      genre: 'COMMERCIAL / ADVANCED VISUALS',
+      desc: 'A futuristic commercial for Lumos Automotive. Features high-speed robotic arm sweeps and complex virtual production backdrops inside Unreal Engine 5.4, seamlessly blending the contours of a premium EV with real-time digital light ribbons.',
+      director: 'Lumos Automotive',
       year: '2026',
       status: 'Broadcast Active',
       img: '/images/project_lumos.png'
     },
-    'CHRONO TRIGGER': {
-      genre: 'EXPERIMENTAL ACTION',
-      desc: 'An action-packed time-loop short film. Shot entirely in a single continuous camera take with custom mechanical rigs, follow our protagonist who relives the same sixty seconds trying to outrun a collapsing infrastructure and prevent a massive central core overload.',
-      director: 'Elena Rostova',
+    'APEX RUNTIME CAMPAIGN': {
+      genre: 'BRAND FILM / ACTIVEWEAR',
+      desc: 'An acrobatic, continuous single-take micro-commercial for APEX sportswear. Shot with custom mechanical steady-cams to follow athletes through intensive parkour movements, highlighting garment stretch and dynamic durability.',
+      director: 'APEX Sportswear',
       year: '2025',
-      status: 'Released / Vimeo Staff Pick',
+      status: '15M+ Views Active',
       img: '/images/chrono_trigger.png'
     },
-    'ETHEREAL': {
-      genre: 'COMMERCIAL / FASHION',
-      desc: 'Surrealist fashion film presenting slow-motion fabric dynamics, deep saturated atmospheric tones, and macro close-ups. Soundtracked with dynamic organic synthesizers, Ethereal is an visual poem celebrating structural movement, wind, and lighting gradients.',
-      director: 'Vikram Sen',
+    'VELVET COUTURE SHORT': {
+      genre: 'COMMERCIAL / HIGH FASHION',
+      desc: 'A breathtakingly beautiful visual showcase celebrating Velvet Couture\'s autumn fabric release. Captures the dynamics of silk and flowing structures moving in hyper slow-motion under golden-hour warm gradient light sweeps.',
+      director: 'Velvet Couture',
       year: '2026',
-      status: 'Digital Campaign',
+      status: 'Campaign Active',
       img: '/images/ethereal.png'
     }
   };
