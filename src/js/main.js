@@ -3,38 +3,54 @@
 document.addEventListener('DOMContentLoaded', () => {
   
   // --- 1. Custom Cinematic Cursor Tracking ---
-  const cursor = document.getElementById('custom-cursor');
-  const follower = document.getElementById('custom-cursor-follower');
-  
-  if (cursor && follower) {
+  const initCustomCursor = () => {
+    const cursor = document.getElementById('custom-cursor');
+    const follower = document.getElementById('custom-cursor-follower');
+    
+    if (!cursor || !follower) return;
+    
     let mouseX = 0, mouseY = 0;
     let followerX = 0, followerY = 0;
+    let hasMoved = false;
     
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       
-      // Instantly position the small dot
+      if (!hasMoved) {
+        hasMoved = true;
+        // Instantly position elements under the pointer on first movement
+        followerX = mouseX;
+        followerY = mouseY;
+        cursor.style.left = `${mouseX}px`;
+        cursor.style.top = `${mouseY}px`;
+        follower.style.left = `${followerX}px`;
+        follower.style.top = `${followerY}px`;
+        
+        cursor.classList.add('visible');
+        follower.classList.add('visible');
+      }
+      
       cursor.style.left = `${mouseX}px`;
       cursor.style.top = `${mouseY}px`;
     });
     
-    // Follower lag animation loop
+    // Follower lag animation loop using requestAnimationFrame
     const animateFollower = () => {
-      // Linear interpolation (lerp) for smooth trailing
-      followerX += (mouseX - followerX) * 0.12;
-      followerY += (mouseY - followerY) * 0.12;
-      
-      follower.style.left = `${followerX}px`;
-      follower.style.top = `${followerY}px`;
-      
+      if (hasMoved) {
+        followerX += (mouseX - followerX) * 0.12;
+        followerY += (mouseY - followerY) * 0.12;
+        
+        follower.style.left = `${followerX}px`;
+        follower.style.top = `${followerY}px`;
+      }
       requestAnimationFrame(animateFollower);
     };
     animateFollower();
     
-    // Hover States on interactive elements
-    const hoverElements = document.querySelectorAll('.cursor-hover');
-    hoverElements.forEach((el) => {
+    // Smooth hover effect hooks on all interactive selectors
+    const hoverTargets = document.querySelectorAll('.cursor-hover, a, button, select, input, textarea, [role="button"]');
+    hoverTargets.forEach((el) => {
       el.addEventListener('mouseenter', () => {
         cursor.classList.add('custom-cursor-active');
         follower.classList.add('custom-cursor-follower-active');
@@ -44,7 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
         follower.classList.remove('custom-cursor-follower-active');
       });
     });
-  }
+  };
+  
+  initCustomCursor();
 
   // --- 2. Ambient Audio Manager (Web Audio API Cinematic Drone Synth with Real-Time Golden Visualizer & Dynamic Soundscapes) ---
   const audioControl = document.getElementById('audio-control');

@@ -105,45 +105,58 @@ body {
   color: var(--bg-primary);
 }
 
-/* --- Custom Cursor --- */
+/* --- Custom Cinematic Cursor --- */
 .custom-cursor {
-  width: 10px;
-  height: 10px;
-  background: var(--accent-gold);
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-gold);
   border-radius: 50%;
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: var(--z-cursor);
-  transition: width 0.2s, height 0.2s, background-color 0.2s;
-  mix-blend-mode: difference;
+  z-index: 10000; /* Extremely high z-index to stay on top */
+  opacity: 0; /* Hidden initially to avoid top-left stick bug on load */
+  transition: opacity 0.3s ease, width 0.2s, height 0.2s, background-color 0.2s;
 }
 
 .custom-cursor-follower {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border: 1px solid var(--accent-gold);
   border-radius: 50%;
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: var(--z-cursor);
-  transition: transform 0.08s ease-out, width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
+  z-index: 9999;
+  opacity: 0; /* Hidden initially to avoid top-left stick bug on load */
+  transition: opacity 0.3s ease, transform 0.08s ease-out, width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
 }
 
+.custom-cursor.visible,
+.custom-cursor-follower.visible {
+  opacity: 1;
+}
+
+/* Hover Active States on interactive items */
 .custom-cursor-active {
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
   background-color: var(--accent-gold);
 }
 
 .custom-cursor-follower-active {
-  width: 60px;
-  height: 60px;
+  width: 52px;
+  height: 52px;
   border-color: var(--accent-gold);
-  background-color: rgba(212, 175, 55, 0.05);
+  background-color: rgba(212, 175, 55, 0.08);
 }
 
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor, .custom-cursor-follower {
+    display: none !important;
+  }
+}
 /* --- Universal Typography Styles --- */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
@@ -300,9 +313,4 @@ a {
   align-items: center;
 }
 
-/* Hide custom cursor on touch devices */
-@media (hover: none) and (pointer: coarse) {
-  .custom-cursor, .custom-cursor-follower {
-    display: none;
-  }
-}
+
