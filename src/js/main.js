@@ -1164,4 +1164,140 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --- 12. Netflix-style Cinematic Intro Gateway Orchestrator ---
+  const initNetflixIntro = () => {
+    const introOverlay = document.getElementById('netflix-intro');
+    const gatewayBtn = document.getElementById('intro-gateway-btn');
+    const animContainer = document.getElementById('netflix-anim');
+    
+    if (!introOverlay || !gatewayBtn || !animContainer) return;
+    
+    // Custom cinematic double-beat synth synthesis (Tudum Sound Effect)
+    const playTudumSound = (ctx) => {
+      const now = ctx.currentTime;
+      
+      // Beat 1 (Tu) - Quick impact
+      const osc1 = ctx.createOscillator();
+      const gain1 = ctx.createGain();
+      osc1.type = 'sawtooth';
+      osc1.frequency.setValueAtTime(65, now);
+      osc1.frequency.exponentialRampToValueAtTime(45, now + 0.12);
+      
+      const lp1 = ctx.createBiquadFilter();
+      lp1.type = 'lowpass';
+      lp1.frequency.setValueAtTime(120, now);
+      
+      gain1.gain.setValueAtTime(0.01, now);
+      gain1.gain.linearRampToValueAtTime(0.6, now + 0.02);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+      
+      osc1.connect(lp1);
+      lp1.connect(gain1);
+      gain1.connect(ctx.destination);
+      
+      osc1.start(now);
+      osc1.stop(now + 0.2);
+      
+      // Beat 2 (Dum) - Deep cinematic resonance
+      const osc2 = ctx.createOscillator();
+      const gain2 = ctx.createGain();
+      osc2.type = 'sawtooth';
+      osc2.frequency.setValueAtTime(52, now + 0.14);
+      osc2.frequency.exponentialRampToValueAtTime(35, now + 0.6);
+      
+      const lp2 = ctx.createBiquadFilter();
+      lp2.type = 'lowpass';
+      lp2.frequency.setValueAtTime(150, now + 0.14);
+      lp2.frequency.exponentialRampToValueAtTime(80, now + 0.6);
+      lp2.Q.setValueAtTime(5, now + 0.14);
+      
+      gain2.gain.setValueAtTime(0.01, now + 0.14);
+      gain2.gain.linearRampToValueAtTime(0.85, now + 0.17);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.85);
+      
+      osc2.connect(lp2);
+      lp2.connect(gain2);
+      gain2.connect(ctx.destination);
+      
+      osc2.start(now + 0.14);
+      osc2.stop(now + 0.9);
+      
+      // Sub-bass rumble sweep
+      const subOsc = ctx.createOscillator();
+      const subGain = ctx.createGain();
+      subOsc.type = 'sine';
+      subOsc.frequency.setValueAtTime(32, now + 0.14);
+      subGain.gain.setValueAtTime(0.01, now + 0.14);
+      subGain.gain.linearRampToValueAtTime(0.6, now + 0.2);
+      subGain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+      
+      subOsc.connect(subGain);
+      subGain.connect(ctx.destination);
+      subOsc.start(now + 0.14);
+      subOsc.stop(now + 1.3);
+
+      // High frequency shimmer trail whoosh
+      const shimmerOsc = ctx.createOscillator();
+      const shimmerGain = ctx.createGain();
+      shimmerOsc.type = 'triangle';
+      shimmerOsc.frequency.setValueAtTime(440, now + 0.2);
+      shimmerOsc.frequency.linearRampToValueAtTime(880, now + 0.8);
+      
+      const hp = ctx.createBiquadFilter();
+      hp.type = 'highpass';
+      hp.frequency.setValueAtTime(1000, now + 0.2);
+      
+      shimmerGain.gain.setValueAtTime(0.01, now + 0.2);
+      shimmerGain.gain.linearRampToValueAtTime(0.1, now + 0.4);
+      shimmerGain.gain.exponentialRampToValueAtTime(0.001, now + 1.0);
+      
+      shimmerOsc.connect(hp);
+      hp.connect(shimmerGain);
+      shimmerGain.connect(ctx.destination);
+      shimmerOsc.start(now + 0.2);
+      shimmerOsc.stop(now + 1.1);
+    };
+
+    gatewayBtn.addEventListener('click', () => {
+      // 1. Initialize audio context on user interaction to comply with autoplay policy
+      if (!audioCtx) {
+        initCinematicDrone();
+      }
+      
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      
+      // 2. Play the synthesized Tudum sound effect
+      playTudumSound(audioCtx);
+      
+      // 3. Fade out the click prompt
+      gatewayBtn.classList.add('fade-out');
+      
+      // 4. Reveal the ribbon V logo animations
+      setTimeout(() => {
+        gatewayBtn.style.display = 'none';
+        animContainer.classList.remove('hidden');
+        
+        // Trigger animations
+        setTimeout(() => {
+          animContainer.classList.add('active');
+        }, 50);
+      }, 400);
+      
+      // 5. Complete transition and reveal the website
+      setTimeout(() => {
+        introOverlay.classList.add('fade-out');
+        
+        // Start the atmospheric drone ambient audio smoothly
+        setTimeout(() => {
+          introOverlay.style.display = 'none';
+          startAudioDrone();
+        }, 800);
+      }, 3600);
+    });
+  };
+
+  initNetflixIntro();
+
 });
