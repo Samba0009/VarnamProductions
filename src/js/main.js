@@ -483,7 +483,27 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 1. Scene, Camera, Renderer
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, phoneCanvas.clientWidth / phoneCanvas.clientHeight, 0.1, 100);
+    
+    // Robust size calculations with strict mobile fallbacks
+    const getContainerSize = () => {
+      const parent = phoneCanvas.parentElement;
+      let w = parent ? parent.clientWidth : 0;
+      let h = parent ? parent.clientHeight : 0;
+      
+      if (w === 0 && parent) {
+        const rect = parent.getBoundingClientRect();
+        w = rect.width;
+        h = rect.height;
+      }
+      
+      return {
+        width: w || 320,
+        height: h || 320
+      };
+    };
+    
+    const initialSize = getContainerSize();
+    const camera = new THREE.PerspectiveCamera(45, initialSize.width / initialSize.height, 0.1, 100);
     camera.position.set(0, 0, 10);
     
     const renderer = new THREE.WebGLRenderer({
@@ -491,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
       alpha: true,
       antialias: true
     });
-    renderer.setSize(phoneCanvas.clientWidth, phoneCanvas.clientHeight);
+    renderer.setSize(initialSize.width, initialSize.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     
     // 2. Lighting
@@ -682,15 +702,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     animatePhone(0);
     
-    // 7. Resize Event
-    window.addEventListener('resize', () => {
+    // 7. Resize Event with robust sizing fallbacks
+    const handleResize = () => {
       if (!phoneCanvas) return;
-      const w = phoneCanvas.parentElement.clientWidth;
-      const h = phoneCanvas.parentElement.clientHeight;
-      camera.aspect = w / h;
+      const size = getContainerSize();
+      camera.aspect = size.width / size.height;
       camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-    });
+      renderer.setSize(size.width, size.height);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Force deferred layout passes to guarantee canvas scaling matches completed reflows
+    setTimeout(handleResize, 100);
+    setTimeout(handleResize, 500);
   };
 
   // Trigger Phone 3D rendering
