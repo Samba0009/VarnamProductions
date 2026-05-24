@@ -39,69 +39,6 @@
 </head>
 <body>
 
-
-  <!-- --- Netflix starting Gate Screen --- -->
-  <div class="netflix-gate" id="netflix-gate-screen">
-    <div class="gate-content">
-      <span class="gate-logo">V</span>
-      <button class="gate-btn cursor-hover" id="gate-btn">Enter Cinematic Experience</button>
-    </div>
-  </div>
-
-  <!-- --- Netflix animated Splash Screen --- -->
-  <div class="netflix-splash" id="netflix-splash-screen">
-    <div class="splash-svg-container">
-      <svg viewBox="0 0 100 100" width="100%" height="100%">
-        <defs>
-          <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#e50914" />
-            <stop offset="70%" stop-color="#b81d24" />
-            <stop offset="100%" stop-color="#d4af37" />
-          </linearGradient>
-        </defs>
-        <path class="splash-svg-path" d="M15 5 L35 5 L50 70 L65 5 L85 5 L60 95 L40 95 Z" fill="none" stroke="url(#logoGradient)" stroke-width="3" />
-      </svg>
-      <div class="splash-light-beams">
-        <div class="beam beam-1"></div>
-        <div class="beam beam-2"></div>
-        <div class="beam beam-3"></div>
-        <div class="beam beam-4"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- --- Netflix Profile Selection Screen --- -->
-  <div class="netflix-profiles" id="netflix-profile-screen">
-    <h2 class="profiles-title">Who's watching Varnam?</h2>
-    <div class="profiles-grid">
-      <div class="profile-card cursor-hover" data-name="Rohan (Director)">
-        <div class="profile-avatar-wrap">
-          <div class="profile-avatar avatar-rohan">R</div>
-        </div>
-        <span class="profile-name">Rohan</span>
-      </div>
-      <div class="profile-card cursor-hover" data-name="Elena (Thriller)">
-        <div class="profile-avatar-wrap">
-          <div class="profile-avatar avatar-elena">E</div>
-        </div>
-        <span class="profile-name">Elena</span>
-      </div>
-      <div class="profile-card cursor-hover" data-name="Vikram (VFX)">
-        <div class="profile-avatar-wrap">
-          <div class="profile-avatar avatar-vikram">V</div>
-        </div>
-        <span class="profile-name">Vikram</span>
-      </div>
-      <div class="profile-card cursor-hover" data-name="Guest Fan">
-        <div class="profile-avatar-wrap">
-          <div class="profile-avatar avatar-guest">G</div>
-        </div>
-        <span class="profile-name">Guest</span>
-      </div>
-    </div>
-    <button class="profiles-manage-btn cursor-hover">Manage Profiles</button>
-  </div>
-
   <!-- Custom Cinematic Cursor -->
   <div class="custom-cursor" id="custom-cursor"></div>
   <div class="custom-cursor-follower" id="custom-cursor-follower"></div>
@@ -142,47 +79,7 @@
       </nav>
 
       <div class="header-actions">
-        <!-- Netflix Search box -->
-        <div class="netflix-search-box" id="netflix-search-box">
-          <button class="search-icon-btn cursor-hover" id="search-btn" aria-label="Search Catalog">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
-              <circle cx="11" cy="11" r="8"/>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-          </button>
-          <input type="text" placeholder="Titles, genres, directors..." class="search-input-field" id="search-input">
-        </div>
-
-        <!-- Notification Bell -->
-        <button class="notification-bell-btn cursor-hover" aria-label="Notifications">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/>
-          </svg>
-          <span class="notification-badge">3</span>
-        </button>
-
-        <!-- Netflix Profile Dropdown Trigger -->
-        <div class="navbar-profile-trigger cursor-hover">
-          <div class="navbar-profile-icon avatar-rohan" id="active-profile-icon">R</div>
-          <span class="navbar-profile-caret"></span>
-          
-          <!-- Dropdown Menu -->
-          <div class="navbar-profile-dropdown">
-            <ul class="dropdown-profile-list">
-              <li class="dropdown-profile-item">
-                <div class="dropdown-avatar avatar-rohan">R</div>
-                <span id="active-profile-name">Rohan</span>
-              </li>
-            </ul>
-            <ul class="dropdown-action-links">
-              <li class="dropdown-action-item"><a href="#" id="switch-profiles-btn">Switch Profiles</a></li>
-              <li class="dropdown-action-item"><a href="#contact">Manage Profiles</a></li>
-              <li class="dropdown-action-item"><a href="#contact">Account Details</a></li>
-              <li class="dropdown-action-item"><a href="#" id="signout-btn">Sign Out of Varnam</a></li>
-            </ul>
-          </div>
-        </div>
-
+        <a href="#contact" class="btn-primary cursor-hover">Get In Touch</a>
         <button class="mobile-menu-btn cursor-hover" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
           <span class="menu-line"></span>
           <span class="menu-line"></span>
@@ -211,72 +108,23 @@
   <section class="hero-section" id="hero">
     <!-- Visual Ambient Canvas Background -->
     <div class="hero-bg-media">
-      <!-- High-res cinematic widescreen backdrop image -->
-      <div class="hero-billboard-backdrop" style="background-image: url('images/nebula_drift.png');"></div>
-      <div class="hero-billboard-gradient"></div>
       <div class="smoke-overlay"></div>
-      <!-- Real Canvas for Cinematic Dust Particles -->
       <canvas id="dust-canvas" class="dust-canvas"></canvas>
     </div>
 
-    <div class="container hero-grid-wrapper">
-      <div class="hero-content-column">
-        <!-- V ORIGINAL Tag -->
-        <div class="hero-v-original fade-up">
-          <span class="v-original-mark">V</span>
-          <span class="v-original-text">Original Project Showcase</span>
-        </div>
-        
-        <h1 class="hero-title fade-up">NEBULA DRIFT</h1>
-        
-        <!-- Billboard streaming tags metadata row -->
-        <div class="billboard-meta-row fade-up">
-          <span class="meta-match">98% Match</span>
-          <span class="meta-year">2026</span>
-          <span class="meta-age-badge">U/A 16+</span>
-          <span class="meta-quality-badge">4K Ultra HD</span>
-          <span class="meta-quality-badge">5.1 Audio</span>
-        </div>
-        
-        <p class="hero-lead fade-up">
-          A high-concept visual campaign blending deep immersive CGI space environments with rapid kinetic edits. Discover our elite state-of-the-art production pipeline optimized for maximum screens.
+    <div class="container">
+      <div class="hero-content fade-up">
+        <div class="hero-eyebrow">Cinematic Visual Storytelling</div>
+        <h1 class="hero-title">We Create<br><span class="hero-title-accent">Worlds</span></h1>
+        <p class="hero-lead">
+          Varnam Productions crafts high-impact brand films, cinematic reels, and immersive visual campaigns that stop the scroll and start conversations.
         </p>
-
-        <div class="billboard-cta-group fade-up">
-          <button class="btn-nf-play cursor-hover" id="billboard-play-btn">
-            <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
-            Play Showreel
-          </button>
-          
-          <button class="btn-nf-secondary cursor-hover" id="billboard-list-btn">
-            <span class="list-icon" style="display:inline-flex; align-items:center; justify-content:center;">
-              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-            </span>
-            <span>My List</span>
-          </button>
-          
-          <button class="btn-nf-secondary cursor-hover" id="billboard-info-btn">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-15v6m0 4h.01"/>
-            </svg>
-            More Info
-          </button>
+        <div class="hero-cta-group">
+          <button class="btn-primary cursor-hover" id="play-showreel-btn">Watch Showreel</button>
+          <a href="#portfolio" class="btn-secondary cursor-hover">View Our Work</a>
         </div>
-      </div>
-
-      <!-- Billboard Side Controls -->
-      <div class="billboard-audio-control">
-        <button class="btn-nf-audio cursor-hover" id="billboard-audio-btn" aria-label="Toggle Sound">
-          <svg viewBox="0 0 24 24" width="20" height="20">
-            <path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-          </svg>
-        </button>
-        <span class="billboard-rating-badge">U/A 16+</span>
       </div>
     </div>
-
-    <!-- Hidden triggers for existing modals -->
-    <button id="play-showreel-btn" style="display:none;"></button>
   </section>
 
   <!-- --- Immersive Video Showreel Modal --- -->
