@@ -1,5 +1,70 @@
 /* ============================================================
-   Varnam Productions – Netflix Card Hover Effect
+   Varnam Productions – Netflix-Style Cinematic Intro
+   ============================================================ */
+
+/* Lock body scroll while intro plays */
+body.intro-active {
+  overflow: hidden;
+}
+
+/* Full-screen black intro overlay */
+.vp-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  transition: opacity 0.8s ease;
+}
+
+/* Hidden state – triggered by JS after animation */
+.vp-intro.vp-intro-hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* SVG logo size */
+.vp-intro-logo {
+  width: 120px;
+  height: 130px;
+  filter: drop-shadow(0 0 32px rgba(229, 9, 20, 0.7));
+}
+
+/* SVG path draw animation */
+#vp-path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: vp-draw 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+@keyframes vp-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* "VARNAM PRODUCTIONS" text fades in after draw */
+.vp-intro-label {
+  font-family: 'Montserrat', 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: vp-label-in 0.6s ease 1.5s forwards;
+  margin: 0;
+}
+
+@keyframes vp-label-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   Netflix Card Hover Effect
    ============================================================ */
 
 /* ── Hover details panel slides in from the card bottom ──── */

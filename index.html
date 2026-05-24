@@ -39,6 +39,27 @@
 </head>
 <body>
 
+  <!-- ── Netflix-Style Cinematic Intro ─────────────────── -->
+  <div id="vp-intro" class="vp-intro">
+    <svg class="vp-intro-logo" viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="vpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#e50914"/>
+          <stop offset="100%" stop-color="#d4af37"/>
+        </linearGradient>
+      </defs>
+      <!-- V shape drawn via stroke animation -->
+      <path id="vp-path"
+        d="M10 10 L40 10 L60 85 L80 10 L110 10 L70 120 L50 120 Z"
+        fill="none"
+        stroke="url(#vpGrad)"
+        stroke-width="5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+    </svg>
+    <p class="vp-intro-label">VARNAM PRODUCTIONS</p>
+  </div>
+
   <!-- Custom Cinematic Cursor -->
   <div class="custom-cursor" id="custom-cursor"></div>
   <div class="custom-cursor-follower" id="custom-cursor-follower"></div>
