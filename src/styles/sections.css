@@ -795,32 +795,38 @@
 /* Portfolio Grid */
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 35px;
+  overflow: visible; /* let scaled cards breathe */
+  padding: 10px 6px; /* small padding so scaled cards don't clip at grid edge */
 }
 
 .portfolio-card {
   position: relative;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible; /* MUST be visible for the Netflix scale + hover-panel to show */
   aspect-ratio: 4/5;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
+  transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.28s ease;
+  z-index: 1;
 }
 
 .portfolio-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(212, 175, 55, 0.4);
-  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.05), 0 30px 60px rgba(0, 0, 0, 0.4);
+  transform: scale(1.08);
+  z-index: 50;
+  border-color: rgba(229, 9, 20, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
 }
 
 .card-image-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: hidden;     /* clip the image zoom inside */
+  border-radius: 12px;  /* match card radius since card is now overflow:visible */
 }
 
 .card-img {

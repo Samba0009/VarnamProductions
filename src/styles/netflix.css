@@ -1,51 +1,25 @@
 /* ============================================================
    Varnam Productions – Netflix Card Hover Effect
-   Only card-level hover styles. No gate, no splash, no profiles.
    ============================================================ */
 
-/* ── Portfolio grid: give cards room to grow on hover ────── */
-.portfolio-grid {
-  overflow: visible; /* so the scaled card doesn't get clipped */
-}
-
-/* ── Card base ─────────────────────────────────────────────── */
-.portfolio-card {
-  position: relative;
-  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.25s ease,
-              z-index 0s 0.25s; /* delay z-index restore until scale done */
-  border-radius: 6px;
-  overflow: visible;
-  z-index: 1;
-}
-
-/* Scale up 20 % on hover – just like Netflix */
-.portfolio-card:hover {
-  transform: scale(1.18);
-  z-index: 50;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
-  transition-delay: 0s; /* remove z-index delay on hover-in */
-}
-
-/* Thumbnail stays clipped inside the card */
-.card-image-wrapper {
-  overflow: hidden;
-  border-radius: 6px 6px 0 0;
-}
-
-/* ── Hover details panel (slides up from card bottom) ────── */
+/* ── Hover details panel slides in from the card bottom ──── */
 .netflix-card-hover-details {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 100%;          /* sits directly below the card */
+  left: -4px;
+  right: -4px;
   background: #181818;
-  border-radius: 0 0 6px 6px;
-  padding: 12px 14px 14px;
+  border-radius: 0 0 8px 8px;
+  padding: 14px 16px 16px;
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.22s ease, transform 0.22s ease;
+  transform: translateY(-6px);
+  transition: opacity 0.22s ease 0.06s,
+              transform 0.22s ease 0.06s;
   pointer-events: none;
+  z-index: 51;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-top: none;
 }
 
 .portfolio-card:hover .netflix-card-hover-details {
@@ -72,7 +46,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: border-color 0.18s, background 0.18s;
+  transition: border-color 0.15s, background 0.15s;
 }
 
 .action-circle-btn:hover {
@@ -103,6 +77,7 @@
 
 .hover-match {
   color: #46d369;
+  font-weight: 700;
 }
 
 .hover-age {
@@ -135,4 +110,13 @@
 
 .genre-dot {
   color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Card title inside hover panel ─────────────────────── */
+.netflix-card-hover-details .card-title {
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #fff;
 }
